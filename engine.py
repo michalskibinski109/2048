@@ -11,11 +11,11 @@ class Engine2048:
     """
     Finds the best move for a given board. Follows rules of the game 2048.
     Supported algorithms:
-    - minimax
+        - minimax
     Future algorithms:
-    - Reinforcement Learning
-    - Monte Carlo Tree Search
-    - Expectimax
+        - Reinforcement Learning
+        - Monte Carlo Tree Search
+        - Expectimax
     """
 
     def __init__(self, logger: Logger, board: Board2048 = Board2048()) -> None:

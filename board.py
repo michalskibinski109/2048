@@ -15,20 +15,19 @@ class Direction(Enum):
 class Board2048:
     """
     ##### Rules
-    - The board is a N x M grid (defined by `shape` argument)
-    - The game starts with two tiles with values 2 or 4
-    - The player can move the board in four directions: up, down, left, right
-    - If two tiles with the same value collide while moving, they merge into a new tile
-    - The value of the new tile is the sum of the two tiles that collided
-    - After each move, a new tile with value 2 or 4 appears on the board
+        - The board is a N x M grid (defined by `shape` argument)
+        - The game starts with two tiles with values 2 or 4
+        - The player can move the board in four directions: up, down, left, right
+        - If two tiles with the same value collide while moving, they merge into a new tile
+        - The value of the new tile is the sum of the two tiles that collided
+        - After each move, a new tile with value 2 or 4 appears on the board
     ##### usage
-
-    ```python
-    board = Board2048()
-    board.generate_tile()
-    board.move(Direction.UP)
-    print(board)
-    ```
+        ```python
+        board = Board2048()
+        board.generate_tile()
+        board.move(Direction.UP)
+        print(board)
+        ```
     """
 
     def __init__(

@@ -1,19 +1,9 @@
-/* --imperial-red: #f94144ff;
---orange-crayola: #f3722cff;
---carrot-orange: #f8961eff;
---coral: #f9844aff;
---saffron: #f9c74fff;
---pistachio: #90be6dff;
---zomp: #43aa8bff;
---dark-cyan: #4d908eff;
---paynes-gray: #577590ff;
---cerulean: #277da1ff; */
-
 :root {
     --primary: #577590ff;
     --tertiary: #f94144ff;
     --secondary: #333;
     --light: #eee;
+    --code: #f8961eff;
 }
 
 
@@ -115,7 +105,7 @@ code {
 
 /* pre code */
 pre code {
-    color: var(--tertiary);
+    color: var(--code);
 }
 
 .btn {

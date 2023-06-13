@@ -90,10 +90,14 @@ class Game2048:
         print(f"Game over! Score: {score}")
 
     def __repr__(self) -> str:
-        engine_doc = textwrap.dedent(self.engine.__doc__)
-
-        board_doc = textwrap.dedent(self.board.__doc__)
-        return f"#### Engine:\n{engine_doc}#### Board:\n\n{board_doc}"
+        # engine_doc = textwrap.dedent(self.engine.__doc__)
+        # board_doc = textwrap.dedent(self.board.__doc__)
+        # docstring = f"#### Engine:\n{engine_doc}#### Board:\n\n{board_doc}"
+        # open readme.md
+        with open("readme.md", "r") as f:
+            docstring = f.read()
+        docstring = "\n".join(line.strip() for line in docstring.split("\n"))
+        return docstring
 
 
 if __name__ == "__main__":

@@ -27,42 +27,14 @@ In the above example, a new instance of the `Game2048` class is created, and the
 
 The `play_in_console` method supports different player types:
 
-- **human**: Allows a human player to make moves using the keyboard. The player needs to enter the direction (w, a, s, or d) for each move.
 
-- **ai**: Uses an AI player based on the minimax algorithm to find the best move for each turn.
-
-- **random**: Makes random moves for each turn.
+| Player Type | Description                                                                                                                            |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `human`     | Allows a human player to make moves using the keyboard. The player needs to enter the direction (`w`, `a`, `s`, or `d`) for each move. |
+| `ai`        | Uses an AI player based on the minimax algorithm to find the best move for each turn.                                                  |
+| `random`    | Makes random moves for each turn.                                                                                                      |
 
 You can choose the player type by setting the `player` parameter when calling the `play_in_console` method.
-
-## Documentation
-Code documentes itself. 
-after running the code:
-```python
-print(Game())
-```
-you will get the following documentation:
-```
-Game:
-        Supported algorithms:
-            - minimax
-        Future algorithms:
-            - Reinforcement Learning
-            - Monte Carlo Tree Search
-            - Expectimax
-
-
-Board:
-
-    Rules:
-        - The board is a N x M grid (defined by `shape` argument)
-        - The game starts with two tiles with values 2 or 4
-        - The player can move the board in four directions: up, down, left, right
-        - If two tiles with the same value collide while moving, they merge into a new tile
-        - The value of the new tile is the sum of the two tiles that collided
-        - After each move, a new tile with value 2 or 4 appears on the board
-        - The player wins when a tile with value 2048 appears on the board
-```
 
 ## Dependencies
 
