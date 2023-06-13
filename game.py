@@ -96,7 +96,9 @@ class Game2048:
         # open readme.md
         with open("readme.md", "r") as f:
             docstring = f.read()
-        docstring = "\n".join(line.strip() for line in docstring.split("\n"))
+        docstring = "\n".join(
+            line.strip() for line in docstring.split("\n") if "![image]" not in line
+        )
         return docstring
 
 
