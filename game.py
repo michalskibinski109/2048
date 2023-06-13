@@ -2,12 +2,15 @@ from __future__ import annotations
 from easy_logs import get_logger
 from typing import Literal, NewType, Callable, Dict
 from logging import Logger
+import textwrap
 from enum import Enum
 import numpy as np
 import os
 from board import Board2048, Direction
 from engine import Engine2048
 from time import sleep
+
+logger = get_logger(lvl=10)
 
 
 class Game2048:
@@ -26,13 +29,33 @@ class Game2048:
         ),
     }
 
+    __instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if Game2048.__instance is None:
+            Game2048.__instance = object.__new__(cls)
+        logger.warn("Game2048 is a singleton")
+        return Game2048.__instance
+
     def __init__(self, logger: Logger = get_logger(lvl=10), engine_depth=4) -> None:
-        self.logger = logger
         self.engine_depth = engine_depth
         self.board = Board2048(shape=(4, 4))
         self.game_over = False
         self.board.generate_tile()
         self.engine = Engine2048(logger)
+
+    def ai_move(self) -> Board2048:
+        direction = self.engine.find_best_move(self.board, self.engine_depth)
+        self.board.move(direction)
+        self.board.generate_tile()
+        return self.board
+
+    def move(self, direction: Direction | Literal["a", "s", "w", "d"]) -> Board2048:
+        if isinstance(direction, str):
+            direction = self.CONTROL_KEYS[direction]
+        self.board.move(direction)
+        self.board.generate_tile()
+        return self.board
 
     def play_in_console(
         self,
@@ -54,7 +77,7 @@ class Game2048:
             try:
                 direction = get_move(self)
             except KeyError as e:
-                self.logger.warn(f"Invalid direction: {e}")
+                logger.warn(f"Invalid direction: {e}")
                 continue
             self.board.move(direction)
             self.board.generate_tile()
@@ -67,9 +90,10 @@ class Game2048:
         print(f"Game over! Score: {score}")
 
     def __repr__(self) -> str:
-        engine_doc = f"Engine:\n{self.engine.__doc__}"
-        board_doc = f"Board:\n{self.board.__doc__}"
-        return f"{engine_doc}\n\n{board_doc}"
+        engine_doc = textwrap.dedent(self.engine.__doc__)
+
+        board_doc = textwrap.dedent(self.board.__doc__)
+        return f"#### Engine:\n{engine_doc}#### Board:\n\n{board_doc}"
 
 
 if __name__ == "__main__":

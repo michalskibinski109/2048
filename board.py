@@ -14,15 +14,21 @@ class Direction(Enum):
 
 class Board2048:
     """
-    Rules:
-        - The board is a N x M grid (defined by `shape` argument)
-        - The game starts with two tiles with values 2 or 4
-        - The player can move the board in four directions: up, down, left, right
-        - If two tiles with the same value collide while moving, they merge into a new tile
-        - The value of the new tile is the sum of the two tiles that collided
-        - After each move, a new tile with value 2 or 4 appears on the board
-        - The player wins when a tile with value 2048 appears on the board
+    ##### Rules
+    - The board is a N x M grid (defined by `shape` argument)
+    - The game starts with two tiles with values 2 or 4
+    - The player can move the board in four directions: up, down, left, right
+    - If two tiles with the same value collide while moving, they merge into a new tile
+    - The value of the new tile is the sum of the two tiles that collided
+    - After each move, a new tile with value 2 or 4 appears on the board
+    ##### usage
 
+    ```python
+    board = Board2048()
+    board.generate_tile()
+    board.move(Direction.UP)
+    print(board)
+    ```
     """
 
     def __init__(
@@ -125,15 +131,23 @@ class Board2048:
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self._board})"
 
+    # list representation
+    def __getitem__(self, key: int) -> list:
+        return self._board[key].tolist()
+
+    def aslist(self) -> list:
+        return self._board.flatten().tolist()
+
 
 if __name__ == "__main__":
     board = Board2048()
     # print(board.empty_cells)
     for i in range(4):
         board.generate_tile()
-    print(board)
+    print(board.aslist())
+    # print(board)
 
-    input()
-    # os.system("cls")
-    board.move(Direction.UP)
-    print(board)
+    # input()
+    # # os.system("cls")
+    # board.move(Direction.UP)
+    # print(board)
