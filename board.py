@@ -68,9 +68,10 @@ class Board2048:
         x, y = cells[idx]
         self._board[x, y] = number
 
-    def reset(self) -> None:
+    def reset(self) -> np.ndarray:
         self._board = np.zeros(self.shape, dtype=np.int16)
         self.generate_tile()
+        return self._board
 
     def move(self, direction: Direction, tf=False) -> bool:
         """
@@ -78,6 +79,8 @@ class Board2048:
         return: True if the board changed, False otherwise
         """
         temp_board = self._board.copy()
+        if isinstance(direction, int):
+            direction = Direction(direction)
         match direction:
             case Direction.RIGHT:
                 self._move(temp_board)
@@ -90,11 +93,12 @@ class Board2048:
 
         if np.array_equal(temp_board, self._board):
             if tf:
-                return self._board, self.score, False, None
+                return self._board, self.score, False
             return False
         self._board = temp_board
+        self.generate_tile()
         if tf:
-            return self._board, self.score, True, None
+            return self._board, self.score, True
         return True
 
     def _move(self, board: np.ndarray) -> np.ndarray:

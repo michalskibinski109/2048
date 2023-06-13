@@ -41,20 +41,17 @@ class Game2048:
         self.engine_depth = engine_depth
         self.board = Board2048(shape=(4, 4))
         self.game_over = False
-        self.board.generate_tile()
         self.engine = Engine2048(logger)
 
     def ai_move(self) -> Board2048:
         direction = self.engine.find_best_move(self.board, self.engine_depth)
         self.board.move(direction)
-        self.board.generate_tile()
         return self.board
 
     def move(self, direction: Direction | Literal["a", "s", "w", "d"]) -> Board2048:
         if isinstance(direction, str):
             direction = self.CONTROL_KEYS[direction]
         self.board.move(direction)
-        self.board.generate_tile()
         return self.board
 
     def play_in_console(
@@ -80,7 +77,6 @@ class Game2048:
                 logger.warn(f"Invalid direction: {e}")
                 continue
             self.board.move(direction)
-            self.board.generate_tile()
             os.system("cls")
             print(f"Score: {self.board.score} | Move: {direction}")
             print(self.board)
