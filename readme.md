@@ -2,6 +2,10 @@
 
 Game2048 is a Python implementation of the popular game 2048. It provides a console-based interface for playing the game and supports different player types, including human, AI, and random players.
 
+![image](https://github.com/michalskibinski109/2048/assets/77834536/445e0166-2bdb-4237-914e-5d5320566535)
+![image](https://github.com/michalskibinski109/2048/assets/77834536/70ccd4b8-6825-4fca-85dc-6bdba6f9b7af)
+
+
 ## Installation
 
 To use the Game2048 module, you need to have Python 3.x installed. You can install the required dependencies using pip:
