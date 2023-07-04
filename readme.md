@@ -3,7 +3,7 @@
 This project implements the popular game 2048. The game is built using a combination of Python for the backend and HTML, CSS, and JavaScript for the frontend.
 
 ## Contributors
-I am **absolutelly** open to contributions: 
+#### I am **absolutelly** open to contributions: 
 potentaial tasks:
 - refactor frontend so it will be scallable to portable devices
 - Add new engine to game. It could be DQNagent, or some classic engine.
